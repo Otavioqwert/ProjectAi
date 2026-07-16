@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjectAI - Agente ReAct</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="brand"><i class="fa-solid fa-robot"></i> ProjectAI</div>
+            <div class="panel config-panel">
+                <h3><i class="fa-solid fa-sliders"></i> Configuração</h3>
+                <div class="form-group">
+                    <label>API Key (OpenRouter)</label>
+                    <input type="password" id="apiKey" placeholder="sk-or-...">
+                </div>
+                <div class="form-group">
+                    <label>Modelo</label>
+                    <select id="modelSelect">
+                        <option value="openai/gpt-4o">GPT-4o</option>
+                        <option value="anthropic/claude-3.5-sonnet">Claude 3.5 Sonnet</option>
+                        <option value="google/gemini-pro-1.5">Gemini 1.5</option>
+                    </select>
+                </div>
+                <button id="btnSaveConfig" class="btn btn-secondary"><i class="fa-solid fa-save"></i> Salvar</button>
+            </div>
+            <div class="panel files-panel">
+                <h3><i class="fa-solid fa-folder-open"></i> Arquivos</h3>
+                <div class="file-drop-area" id="dropArea">
+                    <span>Arraste arquivos ou clique</span>
+                    <input type="file" id="fileInput" multiple hidden>
+                </div>
+                <ul id="fileList" class="file-list"></ul>
+            </div>
+            <div class="panel memory-panel">
+                <h3><i class="fa-solid fa-brain"></i> Memória RBM</h3>
+                <div style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.5rem;">
+                    Tripletos: <span id="tripletCount">0</span>
+                </div>
+                <button id="btnCompress" class="btn btn-warning" style="width:100%; margin-bottom:0.5rem;"><i class="fa-solid fa-compress"></i> Comprimir Texto</button>
+                <ul id="memoryList" class="memory-list"></ul>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="status-indicator" id="slmStatus">
+                    <span class="dot"></span> <span id="slmText">SLM Offline</span>
+                </div>
+                <div class="controls">
+                    <button id="btnPause" class="btn btn-warning" disabled><i class="fa-solid fa-pause"></i> Pausar</button>
+                    <button id="btnClear" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Limpar</button>
+                </div>
+            </header>
+            <div class="workspace">
+                <div id="chatContainer" class="chat-container">
+                    <div class="message system">Sistema inicializado. Configure a API e carregue arquivos.</div>
+                </div>
+                <div id="logConsole" class="log-console">
+                    <div class="log-header">Logs do Sistema</div>
+                    <div id="logContent"></div>
+                </div>
+            </div>
+            <div class="input-area">
+                <textarea id="userInput" placeholder="Digite seu comando..."></textarea>
+                <button id="btnSend" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </main>
+    </div>
+    <script src="js/config.js"></script>
+    <script src="js/memory.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
